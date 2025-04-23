@@ -101,7 +101,7 @@ logistics_task = Task(
     expected_output="Confirmation of all logistics arrangements "
                     "including catering and equipment setup.",
     human_input=True,
-    async_execution=True,
+    async_execution=False,
     agent=logistics_manager
 )
 
@@ -111,7 +111,7 @@ marketing_task = Task(
                 "{expected_participants} potential attendees.",
     expected_output="Report on marketing activities "
                     "and attendee engagement formatted as markdown.",
-    async_execution=True,
+    async_execution=False,
     output_file="marketing_report.md",  # Outputs the report as a text file
     agent=marketing_communications_agent
 )
@@ -131,21 +131,19 @@ event_management_crew = Crew(
 )
 
 event_details = {
-    'event_topic': "Tech Innovation Conference",
-    'event_description': "A gathering of tech innovators "
+    'event_topic': "Tech Meetup",
+    'event_description': "A gathering of startups founders "
                          "and industry leaders "
                          "to explore future technologies.",
-    'event_city': "San Francisco",
-    'tentative_date': "2024-09-15",
-    'expected_participants': 500,
-    'budget': 20000,
-    'venue_type': "Conference Hall"
+    'event_city': "London",
+    'tentative_date': "2025-05-15",
+    'expected_participants': 40,
+    'budget': 10000,
+    'venue_type': "Event Venue"
 }
 
-try:
-    result = event_management_crew.kickoff(inputs=event_details)
-finally:
-    # Allow time for threads to finish before Python shuts down
-    time.sleep(5)
+
+result = event_management_crew.kickoff(inputs=event_details)
+
 
 print(result)
